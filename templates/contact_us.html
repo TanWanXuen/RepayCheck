@@ -1,0 +1,83 @@
+{% extends 'user_menu.html' %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<body class="body-container">
+    <div class="form-instruction-wrapper">
+
+        <!-- Left: Map and Address -->
+        <div class="upload-body">
+            <h6>📍 Visit Us at UTAR Sungai Long</h6>
+            <p><b>Universiti Tunku Abdul Rahman (UTAR)</b><br>
+               Jalan Sungai Long, Bandar Sungai Long,<br>
+               43000 Kajang, Selangor, Malaysia</p>
+            <div class="map-container" style="border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15930.479646692088!2d101.78862719020899!3d3.046803411805631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cdca158bf44fb3%3A0x7ef95d46c7fcdbff!2sUniversiti%20Tunku%20Abdul%20Rahman%20(UTAR)%20-%20Sungai%20Long%20Campus!5e0!3m2!1sen!2smy!4v1719748000000!5m2!1sen!2smy" 
+                    width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+
+        <!-- Right: Contact Form -->
+        <div class="upload-retrain-instruct">
+            <h6>📩 Contact Us</h6>
+            <p>If you have a question, need support, or want to share feedback — we're here to help.</p>
+            <form action="{{ url_for('inference.contact_us_submit') }}" method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                
+                <div class="small-container">
+                    <label for="name">Name: <span style="color: red;">**</span></label>
+                    <input type="text" id="name" name="name" placeholder="e.g., Jane" required>
+                </div>
+
+                <div class="small-container">
+                    <label for="email">Email: <span style="color: red;">**</span></label>
+                    <input type="email" id="email" name="email" placeholder="e.g., jane@example.com" required>
+                </div>
+
+                <div class="small-container">
+                    <label for="enquiry_type">Enquiry Type: <span style="color: red;">**</span></label>
+                    <select id="enquiry_type" name="enquiry_type" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="prediction">Prediction Issue</option>
+                        <option value="retrain">Retraining Request</option>
+                        <option value="account">Login or Account Help</option>
+                        <option value="privacy">Data Privacy</option>
+                        <option value="general">Other</option>
+                    </select>
+                </div>
+
+                <div class="small-container">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Write your message here..."></textarea>
+                </div>
+
+                <button type="submit">Send Message</button>
+            </form>
+
+            <br><hr><br>
+
+            <h6>🌐 Connect With Us</h6>
+           <ul class="file-list fancy-list">
+                <li class="file-entry">
+                    <a href="https://www.facebook.com/UTARnet" target="_blank">📘 Connect on Facebook</a>
+                </li>
+                <li class="file-entry">
+                    <a href="https://www.linkedin.com/school/universiti-tunku-abdul-rahman/" target="_blank">🔗 Follow us on LinkedIn</a>
+                </li>
+                <li class="file-entry">
+                    <a href="https://www.instagram.com/utarnet1/" target="_blank">📷 Explore on Instagram</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    {% if request.args.get("message") %}
+    <script>
+        alert("{{ request.args.get('message') }}");
+    </script>
+    {% endif %}
+</body>
+{% endblock %}

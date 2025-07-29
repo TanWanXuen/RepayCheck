@@ -1,0 +1,67 @@
+{% extends 'user_menu.html' %}
+
+{% block title %}FAQ{% endblock %}
+
+{% block content %}
+<div class="body-container">
+<div class="faq-container">
+ <div class="upload-retrain-instruct"> <br><br>
+    <h3>Support & Frequently Asked Questions</h3>
+    <p>
+        RepayCheck estimates your loan repayment eligibility using a fairness-aware machine learning model trained on real-world loan data. It provides transparency and guidance by helping you understand how key financial indicators influence your credit profile.
+    </p>
+
+    <details class="upload-retrain-instruct-container">
+        <summary>Frequently Asked Questions</summary>
+
+        <br><strong>Q: What is this tool based on?</strong><br>
+        A: This tool is powered by machine learning model trained on anonymized financial datasets. It uses selected attributes like payment history, debt usage, and loan type to assess repayment behavior, with fairness adjustments applied.
+
+        <br><br><strong>Q: Do I need to fill in every field?</strong><br>
+        A: No. Fields marked as optional can be left blank. If skipped, default or average values will be used in their place. You can still receive a prediction.
+
+        <br><br><strong>Q: What if I receive a “Not Eligible to Repay” result?</strong><br>
+        A: This result suggests possible repayment risk based on the inputs provided. It does not reflect any actual credit approval or rejection. You may adjust your information to explore how certain factors affect the prediction.
+
+        <br><br><strong>Q: Can I trust the fairness of the result?</strong><br>
+        A: Yes. This system integrates fairness techniques (pre-, in-, and post-processing) to reduce bias toward specific demographic groups, using attributes such as regional data as a proxy for socioeconomic fairness.
+
+        <br><br><strong>Q: Is this tool affiliated with any official financial institution?</strong><br>
+        A: No. RepayCheck is developed as part of a final-year research project and is not associated with any bank, lender, or government agency.
+    </details><br>
+
+    <details class="upload-retrain-instruct-container">
+        <summary>What is a credit score?</summary>
+        <p>
+            A credit score is a numerical estimate of a person's creditworthiness, generally ranging from 300 to 850. Lenders use it to assess the risk of granting a loan. Higher scores typically suggest better repayment reliability.
+        </p>
+    </details><br>
+
+    <details class="upload-retrain-instruct-container">
+        <summary>How is your estimated score calculated?</summary>
+        <ul>
+            <li><strong>Payment History:</strong> Late or missed payments may lower your score.</li>
+            <li><strong>Debt Usage:</strong> A high ratio of used credit compared to your limit is considered risky.</li>
+            <li><strong>Credit Age:</strong> A longer and stable credit history usually reflects positively.</li>
+            <li><strong>New Credit:</strong> Multiple recent applications or new accounts may reduce your score.</li>
+            <li><strong>Credit Mix:</strong> A diverse mix of credit types (e.g., loans, credit cards) is favorable.</li>
+        </ul>
+    </details><br>
+
+    <details class="upload-retrain-instruct-container">
+        <summary>What makes RepayCheck unique?</summary>
+        <p>
+            RepayCheck doesn’t just predict outcomes — it explains them. Through SHAP-based feature interpretation, you can see what factors most influence your result. Additionally, the system applies fairness constraints to ensure equitable predictions across different user groups, aligning with responsible AI principles.
+        </p>
+    </details><br>
+
+    <details class="upload-retrain-instruct-container">
+        <summary>Disclaimer</summary>
+        <p>
+            RepayCheck is an educational and research-oriented tool built as part of a student project. It is not intended for official financial decision-making or credit evaluation. Results are estimated based on historical data and fairness-aware algorithms and should not be treated as professional financial advice.
+        </p>
+    </details><br><br>
+</div>
+</div>
+</div>
+{% endblock %}

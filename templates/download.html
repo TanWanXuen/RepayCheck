@@ -1,0 +1,36 @@
+{% extends 'admin_menu.html' %}
+
+{% block title %}Download Results{% endblock %}
+
+{% block content %}
+<div class="container upload-body">
+    <div class="upload">
+        <h6 class="section-title">Model Inference Results</h6>
+            <ul class="file-list fancy-list">
+            {% for file in excel_files %}
+            <li class="file-entry">
+                <a href="{{ url_for('download.download_excel', filename=file) }}" download>
+                    📄 {{ file }}
+                </a>
+            </li>
+            {% else %}
+            <li class="file-entry">No results available.</li>
+            {% endfor %}
+        </ul>
+        <br><br>
+        <h6 class="section-title">Model Retraining Results</h6>
+        <ul class="file-list fancy-list">
+            {% for file in json_files %}
+            <li class="file-entry">
+                <a href="{{ url_for('download.download_json', filename=file) }}" download>
+                    🧾 {{ file }}
+                </a>
+            </li>
+            {% else %}
+            <li class="file-entry">No results available.</li>
+            {% endfor %}
+        </ul>
+    </div> 
+</div>
+<br><br><br><br><br><br>
+{% endblock %}

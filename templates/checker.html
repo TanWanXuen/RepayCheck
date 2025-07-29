@@ -1,0 +1,210 @@
+{% extends 'user_menu.html' %}
+
+{% block title %}Loan Repayment Eligibility{% endblock %}
+
+{% block content %}
+        <div class="body-container">
+            <div class="form-instruction-wrapper">
+                <div class="upload-retrain-instruct">
+                <h6>🔍 Check Your Loan Repayment Eligibility</h6>
+                    <form action="../checker/result" method="post">
+                        <div class="small-container">
+                        <label>Credit Score: <span style="color: red;">**</span></label>
+                            <div class="tooltip2">
+                                Do not know your score? 
+                                <a href="../credit_score">Click here to estimate</a>. 
+                                Once done, it will return here automatically.
+                            </div>
+                            <input type="number" name="credit_score" min="300" max="850" step="1" placeholder="e.g., 350" required value="{{ prefill_score or '' }}">
+                        <div class="tooltip">Range: 300-850</div></div>
+                        
+                        <div class="small-container">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <label>Monthly Income:  <span style="color: red;">**</span><br>
+                                <input type="number" name="monthly_income"  min="0" step="10" placeholder="e.g., 150000" required>
+                            </label>
+                        </div>
+
+                        <div class="small-container">
+                        <label>Terms (in-Years): <span style="color: red;">**</span><br>
+                            <input type="number" name="loan_age" min="1" max="20" placeholder="e.g., 15" required>
+                        </label><div class="tooltip">Range: 1 - 20</div></div>
+
+                        <div class="small-container">
+                        <label>Loan Amount:   <span style="color: red;">**</span><br>
+                            <input type="number" name="cur_actual_UPB"  min="0" step="1000" placeholder="e.g., 3650000" required>
+                        </label></div>
+
+                        <div class="small-container">
+                        <label>Interest Rate (%): <span style="color: red;">**</span><br>
+                            <input type="number" name="cur_int_rate" min="0" max="100" step="0.01" placeholder="e.g., 3.5" required>
+                        </label></div>
+
+                        <div class="small-container">
+                        <label>Mortgage Insurance (%): <span style="color: red;">**</span><br>
+                            <input type="number" name="mi" min="0" max="55" step="0.01" placeholder="e.g., 3.5" required>
+                        </label></div>
+
+                        <div class="small-container">
+                        <label>Total applicants for this loan: <span style="color: red;">**</span></label>
+                        <div class="tooltip2">How many people are applying for the loan?</div>    
+                            <select name="num_borrowers" id="num_borrowers" required>
+                                <option value="" disabled selected>Select number of borrowers</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+
+                        <div class="small-container">
+                        <label>Loan start date: <span style="color: red;">**</span><br>
+                            <input type="date" name="loan_start_date" min="0" placeholder="e.g., 24" required>
+                        </label></div>
+
+                        <div class="small-container">
+                        <label>Property Location: <span style="color: red;">**</span><br>
+                            <select name="property_state" required>
+                                <option value="" disabled selected>Select a state</option>
+                                    <option value="TX">Texas (TX)</option>
+                                    <option value="FL">Florida (FL)</option>
+                                    <option value="CA">California (CA)</option>
+                                    <option value="IL">Illinois (IL)</option>
+                                    <option value="OH">Ohio (OH)</option>
+                                    <option value="MI">Michigan (MI)</option>
+                                    <option value="PA">Pennsylvania (PA)</option>
+                                    <option value="GA">Georgia (GA)</option>
+                                    <option value="NY">New York (NY)</option>
+                                    <option value="NC">North Carolina (NC)</option>
+                                    <option value="AZ">Arizona (AZ)</option>
+                                    <option value="IN">Indiana (IN)</option>
+                                    <option value="NJ">New Jersey (NJ)</option>
+                                    <option value="VA">Virginia (VA)</option>
+                                    <option value="TN">Tennessee (TN)</option>
+                                    <option value="CO">Colorado (CO)</option>
+                                    <option value="WA">Washington (WA)</option>
+                                    <option value="MO">Missouri (MO)</option>
+                                    <option value="SC">South Carolina (SC)</option>
+                                    <option value="MN">Minnesota (MN)</option>
+                                    <option value="MD">Maryland (MD)</option>
+                                    <option value="WI">Wisconsin (WI)</option>
+                                    <option value="MA">Massachusetts (MA)</option>
+                                    <option value="OR">Oregon (OR)</option>
+                                    <option value="AL">Alabama (AL)</option>
+                                    <option value="KY">Kentucky (KY)</option>
+                                    <option value="UT">Utah (UT)</option>
+                                    <option value="OK">Oklahoma (OK)</option>
+                                    <option value="CT">Connecticut (CT)</option>
+                                    <option value="NV">Nevada (NV)</option>
+                                    <option value="LA">Louisiana (LA)</option>
+                                    <option value="IA">Iowa (IA)</option>
+                                    <option value="KS">Kansas (KS)</option>
+                                    <option value="AR">Arkansas (AR)</option>
+                                    <option value="ID">Idaho (ID)</option>
+                                    <option value="NE">Nebraska (NE)</option>
+                                    <option value="NM">New Mexico (NM)</option>
+                                    <option value="NH">New Hampshire (NH)</option>
+                                    <option value="DE">Delaware (DE)</option>
+                                    <option value="MS">Mississippi (MS)</option>
+                                    <option value="ME">Maine (ME)</option>
+                                    <option value="MT">Montana (MT)</option>
+                                    <option value="WV">West Virginia (WV)</option>
+                                    <option value="RI">Rhode Island (RI)</option>
+                                    <option value="DC">District of Columbia (DC)</option>
+                                    <option value="SD">South Dakota (SD)</option>
+                                    <option value="HI">Hawaii (HI)</option>
+                                    <option value="VT">Vermont (VT)</option>
+                                    <option value="ND">North Dakota (ND)</option>
+                                    <option value="WY">Wyoming (WY)</option>
+                                    <option value="AK">Alaska (AK)</option>
+                                    <option value="PR">Puerto Rico (PR)</option>
+                                    <option value="VI">Virgin Islands (VI)</option>
+                                    <option value="GU">Guam (GU)</option>
+                            </select>
+                        </label></div>
+
+                        <div class="small-container">
+                        <details>
+                        <summary>Advanced Options (Optional)</summary>
+                        <br><div>
+                            <label for="loan_purpose">Loan Purpose:</label><br>
+                            <select name="loan_purpose">
+                                <option value="" disabled selected>Select loan purpose</option><br>
+                                    <option value="P">To purchase a residential property</option>
+                                    <option value="C">To refinance and withdraw equity (cash-out refinance)</option>
+                                    <option value="N">To refinance for a lower rate or better terms (rate-and-term refinance)</option>
+                            </select><br><br>
+
+                            <label for="channel">Loan Origination Channel:</label><br>
+                            <div class="tooltip2">Select the method through which your loan application was initiated.</div>
+                            <select name="channel">
+                                <option value="" disabled selected>Select a method</option><br>
+                                    <option value="R">Bank (Retail)</option>
+                                    <option value="B">Mortgage broker (Broker)</option>
+                                    <option value="C">A specialized lender who later sold the loan (Correspondent)</option>
+                            </select><br><br>
+                            
+                            <label for="first_time_homebuyer">First Time Homebuyer (Y/N):</label><br>
+                            <select name="first_time_homebuyer">
+                                <option value="" disabled selected>Select an option</option><br>
+                                    <option value="Y">Yes</option>
+                                    <option value="N">No</option>
+                            </select><br><br>
+                            
+                            <label for="property_type">Property Type:</label><br>
+                            <select name="property_type">
+                                <option value="" disabled selected>Select type of property</option><br>
+                                    <option value="SF">Single-Family</option>
+                                    <option value="PU">PUD (Planned Unit Development)</option>
+                                    <option value="CO">Condominium</option>
+                                    <option value="MH">Manufactured Housing</option>
+                                    <option value="CP">Cooperative Housing (Co-op)</option>
+                            </select><br><br>
+
+                            <label for="occupancy_status">Property occupancy:</label><br>
+                            <select name="occupancy_status">    
+                                <option value="" disabled selected>Select property occupancy</option><br>
+                                    <option value="P">Primary Residence</option>
+                                    <option value="I">Investment Property</option>
+                                    <option value="S">Second Home</option>
+                            </select><br><br>
+                        
+                            <label for="num_of_units">Number of Property:</label><br>
+                            <select name="num_of_units">    
+                                <option value="" disabled selected>Select number of units</option><br>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                            </select><br>
+                        </div></div>
+                        </details>
+                        
+                        <br><br><button type="submit">Check Loan Repayment Eligibility</button>
+                    </form>
+                </div> 
+        <div class ="upload-retrain-instruct"> <br><br>
+            <h3>Support & Questions</h3>
+                    <p>Use this tool to estimate your eligibility for loan repayment based on your financial details. 
+                        It helps you understand if you can afford your loan payments.</p>
+                    <details class="upload-retrain-instruct-container">
+                        <summary>How to Use This Tool?</summary>
+                        <ul>
+                            <li>Enter your monthly income and other loan-related details.</li>
+                            <li>Select from the dropdowns based on your real-life loan application.</li>
+                            <li>Advanced options are optional — skip them if unsure.</li>
+                            <li>Click “Check Loan Repayment Eligibility” to view the result instantly.</li>
+                            <li>No personal data will be stored. This tool is for estimation only.</li>
+                        </ul>
+                    </details><br>
+                </div>
+            </div>
+        </div>
+        <br><br><br>
+        {% if result_message %}
+        <script>
+            alert("{{ result_message }}");
+        </script>
+        
+        {% endif %}
+{% endblock %}

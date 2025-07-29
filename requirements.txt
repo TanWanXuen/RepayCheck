@@ -1,0 +1,48 @@
+# Core Flask framework
+Flask
+Flask-Login
+Flask-Limiter
+Flask-WTF
+Flask-SQLAlchemy
+
+# Async tasks / background scheduling
+APScheduler
+
+# Environment variable support
+python-dotenv
+
+# ML / Data Science stack
+pandas
+pyarrow 
+scikit-learn
+lightgbm
+imblearn
+optuna
+joblib
+dask
+fairlearn
+
+# Password hashing & security
+bcrypt
+Werkzeug
+
+# Pydantic for input validation
+pydantic
+
+# db
+SQLAlchemy
+pymysql
+cryptography
+
+# Testing tools
+pytest
+
+# Other utilities
+python-dateutil
+threadpoolctl
+dataclasses  # Only needed for Python < 3.7
+requests
+gunicorn
+redis
+flask-session
+celery

@@ -1,0 +1,27 @@
+<html>
+<head>
+    <title>404 - Page Not Found</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="error-body">  
+    <div class="page-wrapper">
+        {% include 'header.html' %}
+        
+        <div class="error-container">
+            <div class="error-card">
+                <h1 class="error-title">404</h1>
+                <p class="error-subtitle">Oops! Page Not Found</p>
+                <p class="error-text">Sorry, the page you're looking for doesn’t exist or may have moved.</p>
+                <div class="error-button">
+                    <a href="{{ url_for('index') }}">
+                        <button>Return to Homepage</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {% include 'footer.html' %}
+    </div>
+</body>
+<script src="{{ url_for('static', filename='script.js') }}"></script> 
+</html>

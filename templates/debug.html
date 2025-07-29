@@ -1,0 +1,140 @@
+<html>
+<head>
+
+    <title>Admin Debug Panel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="debug">
+    {% include 'header.html' %}
+     <!-- Navigation Links -->
+        <div class="nav-debug">
+            <a href="#add-admin">Add Admin</a> |
+            <a href="#delete-admin">Delete Admin</a> |
+            <a href="#modify-admin">Modify Admin</a> |
+            <a href="#admin-users">Admin Users</a> |
+            <a href="#predictions">Predictions</a> |
+            <a href="#retrain">Retraining</a> |
+            <a href="#model-version">Model Version</a> |
+            <a href="#downloads">Downloads</a>
+        </div>
+
+    <div class="debug-big-container">
+        <h1>Debug Panel</h1>
+        <h2>Admin View Only</h2>
+        <div class="debug-container" id="add-admin">
+            <h2>Add Admin</h2>
+            <form method="POST" action="{{ url_for('admin_debug.add_admin') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <label>Username: <input type="text" name="username" required></label>
+                <label>Password: <input type="password" name="password" required></label>
+                <button type="submit">Add Admin</button>
+            </form>
+        </div>
+
+        <div class="debug-container" id="delete-admin">
+            <h2>Delete Admin</h2>
+            <form method="POST" action="{{ url_for('admin_debug.delete_admin') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <label>Username: <input type="text" name="username" required></label>
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+
+        <div class="debug-container" id="modify-admin">
+            <h2>Modify Admin</h2>
+            <form method="POST" action="{{ url_for('admin_debug.modify_admin') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <label>Username: <input type="text" name="username" required></label>
+                <label>Old Password: <input type="password" name="old-password" required></label>
+                <label>New Password: <input type="password" name="new-password" required></label>
+                <button type="submit">Change Password</button>
+            </form>
+        </div>
+
+        <div class="debug-container"  id="admin-users">
+            <div class="scroll-x">   
+                <h2>Admin Users</h2>
+                <table>
+                    <tr><th>ID</th><th>Username</th></tr>
+                    {% for admin in admins %}
+                    <tr><td>{{ admin.admin_id }}</td><td>{{ admin.username }}</td></tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+        <div class="debug-container" id="predictions">
+            <div class="scroll-x">   
+                <h2>Predictions</h2>
+                <table>
+                    <tr><th>ID</th><th>Admin ID</th><th>File</th><th>Timestamp</th></tr>
+                    {% for pred in predictions %}
+                    <tr><td>{{ pred.p_id }}</td><td>{{ pred.admin_id }}</td><td>{{ pred.file_name }}</td><td>{{ pred.predicted_at }}</td></tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        
+        <div class="debug-container" id="retrain">
+            <div class="scroll-x">
+                <h2>Retraining Records</h2>
+                <table>
+                    <tr><th>ID</th><th>Admin ID</th><th>Model Version</th><th>Status</th><th>Start</th><th>End</th></tr>
+                    {% for retrain in retrains %}
+                    <tr>
+                        <td>{{ retrain.r_id }}</td>
+                        <td>{{ retrain.admin_id }}</td>
+                        <td>{{ retrain.model_version_id }}</td>
+                        <td>{{ retrain.status }}</td>
+                        <td>{{ retrain.started_at }}</td>
+                        <td>{{ retrain.finished_at }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        
+        <div class="debug-container" id="model-version">
+            <div class="scroll-x">   
+                <h2>Model Version</h2>
+                    <table>
+                        <tr><th>ID</th><th>Model Version</th><th>Status</th><th>Created At</th>
+                        {% for model in model_version %}
+                        <tr>
+                            <td>{{ model.m_id }}</td>
+                            <td>{{ model.version }}</td>
+                            <td>{{ model.status }}</td>
+                            <td>{{ model.created_at }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+            </div> 
+        </div> 
+
+        <div class="debug-container" id="downloads">
+            <div class="scroll-x">  
+                <h2>Downloads</h2>
+                <table>
+                    <tr><th>ID</th><th>Admin ID</th><th>File Type</th><th>File Name</th><th>Timestamp</th></tr>
+                    {% for d in downloads %}
+                    <tr><td>{{ d.d_id }}</td><td>{{ d.admin_id }}</td><td>{{ d.file_type }}</td><td>{{ d.file_name }}</td><td>{{ d.downloaded_at }}</td></tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+        {% if error_message %}
+            <p>{{ error_message }}</p>
+        {% endif %}
+    </div>
+    {% include 'footer.html' %}
+</body>
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const message = urlParams.get('message');
+  if (message) {
+    alert(message);
+  }
+</script>
+<script src="{{ url_for('static', filename='script.js') }}"></script> 
+</html>

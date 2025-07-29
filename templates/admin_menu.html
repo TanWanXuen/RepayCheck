@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>{% block title %}Admin{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="body-container">
+    {% include 'header.html' %}
+
+    <button id="toggleSidebar" class="collapse-btn">☰</button>
+
+    <div class="admin-container">
+        <div class="admin-sidebar" id="sidebar">
+            <h2 class="sidebar-title">Menu</h2>
+            <div class="admin-links">
+                <a href="{{ url_for('retrain.retrain') }}">Model Retraining</a>
+                <a href="{{ url_for('prediction.prediction') }}">Model Prediction</a>
+                <a href="{{ url_for('download.downloads') }}">Download Results</a>
+            </div>
+            <a href="{{ url_for('logout') }}" class="logout-btn">Log Out</a>
+        </div>
+
+        <div class="main-content" id="mainContent">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    {% include 'footer.html' %}
+<script src="{{ url_for('static', filename='script.js') }}"></script> 
+</body>
+</html>

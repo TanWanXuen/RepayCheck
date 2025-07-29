@@ -1,0 +1,42 @@
+{% extends 'admin_menu.html' %}
+
+{% block title %}Model Prediction{% endblock %}
+
+{% block content %}
+    <div class="container upload-body">
+        <div class="upload">
+            <h6>Model Inference Instructions</h6>
+            <p>To predict the model, follow these steps:</p>
+
+            <ol>
+                <li>Prepare a <b>ZIP file</b> containing only <code>.txt</code> raw data files (no CSV or Excel).</li>
+                <li>Follow this folder structure inside your ZIP:
+                    <div><br><img src="{{ url_for('static', filename='upload_instruct.png') }}"
+                        alt="Folder structure" width="300" height="180">
+                        <p style="font-size: 0.9em; color: #555;">Example folder structure</p>
+                    </div>
+                </li>
+                <li>Upload the ZIP using the form below. The system will:
+                    <ul>
+                        <li>The system will validate your ZIP file structure and contents.</li>
+                        <li>Once validated, prediction will begin automatically.</li>
+                        <li>Upon completion, a prediction summary in an Excel (.csv) file generated — available in the <b>Downloads</b> section.</li>
+                        <li>You may return to the Admin Home page after submitting the file. No further action is required.</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <form action="../prediction/result" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <input type="file" name="file" accept=".zip" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div> 
+    </div>
+    <br><br><br>
+    {% if prediction_message %}
+    <script>
+        alert("{{ prediction_message }}");
+    </script>
+{% endif %}
+{% endblock %}

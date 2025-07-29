@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RepayCheck | Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="home">
+
+    {% include 'header.html' %}
+
+    <section class="about fade-in">
+        <div class="slogan-main"><br>
+            <p class="slogan">💰🏦⚖️🔑 </p>
+            <p class="slogan1">Fair Insights. Smarter Lending.</p>
+            <p class="slogan2">AI-Powered. Ethically Designed.</p>
+            <p class="slogan3">Unlock Smarter Credit with Confidence.</p>
+            <p class="slogan4">RepayCheck – Where Trust Meets Intelligence.</p>
+        </div>
+        <br><h2>About Us</h2>
+        <p>RepayCheck is an AI-powered loan repayment prediction platform. It helps users and banks assess loan eligibility using machine learning models trained on real mortgage data. With fairness-aware predictions and explainable insights, RepayCheck empowers transparent and responsible financial decision-making.</p>
+    </section>
+
+    <section class="about fade-in">
+        <h2>What is Loan Repayment Eligibility?</h2>
+        <p class="carousel-summary">
+            Loan repayment eligibility refers to your ability to repay a loan based on your financial situation — including your income, loan amount, interest rate, and credit score.
+            Lenders assess this to ensure that borrowers can meet their monthly payments without financial distress. At <strong>RepayCheck</strong>, we use advanced machine learning models trained on real-world data to help you estimate your likelihood of successful repayment.
+        </p>
+    </section>
+
+    <section class="about fade-in">
+        <h2>How It Works?</h2>
+        <p class="carousel-summary">RepayCheck leverages historical data and machine learning to predict loan repayment behavior. It ensures fairness, interpretability, and real-time usability for users and institutions.</p>
+        </div>
+    </section>
+
+    <section class="carousel fade-in">
+        <div class="carousel-wrapper">
+            <div class="carousel-track" id="carousel">
+                <img src="{{ url_for('static', filename='analysis.jpeg') }}" alt="AI in Finance">
+                <img src="{{ url_for('static', filename='mortgage.png') }}" alt="Loan Data">
+                <img src="{{ url_for('static', filename='ML.jpeg') }}" alt="Fairness">
+                <img src="{{ url_for('static', filename='property.jpeg') }}" alt="Explainability">
+                <img src="{{ url_for('static', filename='consultation.jpeg') }}" alt="Result Summary">
+            </div>
+        </div>
+    </section> 
+
+    <section class="about fade-in">
+        <h2>Who Should Use RepayCheck?</h2>
+        <div class="carousel-summary">
+            <p><strong> Whether you are planning to apply for a loan, advising clients, or simply curious about AI in finance, RepayCheck offers a transparent and educational tool to assist you.</strong><br></p>
+            <strong>RepayCheck</strong> is designed for:<br>
+            <div class="carousel-small-summary"><ul>
+                <li><strong>Loan Applicants</strong> – Individuals who want to evaluate their loan repayment readiness before applying.</li>
+                <li><strong>Financial Advisors</strong> – Professionals seeking quick insights to guide clients on loan affordability.</li>
+            </ul></div>
+        </div>
+    </section>
+
+    <!-- US Map Info -->
+    <section class="disclaimer fade-in">
+        <h2>Disclaimer</h2>
+        <p>This system is based on US mortgage data for educational use. It may not represent actual Malaysian loan conditions. Please do not use this tool for real financial decisions.</p>
+        <!-- Simple SVG clickable US map -->
+        <div class="carousel-wrapper">
+            <div class="map-container">
+                <!-- US SVG Map -->
+                <div id="map"></div>
+            </div>
+            </div>
+    </section>
+
+    <!-- Buttons -->
+    <div class="button-container fade-in">
+        <a href="../admin"><button class="glow-button">Login as Admin</button></a>
+        <a href="../checker"><button class="glow-button">Check Loan Eligibility</button></a>
+    </div>
+
+    {% include 'footer.html' %}
+
+<script src="{{ url_for('static', filename='mapdata.js') }}"></script>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script src="{{ url_for('static', filename='usmap.js') }}"></script>
+
+</body>
+</html>

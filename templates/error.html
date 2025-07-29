@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>404 - Page Not Found</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="error-body"> 
+    <div class="page-wrapper">
+        {% include 'header.html' %}
+        
+        <div class="error-container">
+            <div class="error-card"><br>
+                <p class="error-subtitle">Error: Invalid Dataset</p>
+                <p class="error-text">You have uploaded an empty or dirty dataset. Please check your file and try again.</p>
+                <div class="error-button">
+                    <a href="{{ url_for('index') }}">
+                        <button>Return to Homepage</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {% include 'footer.html' %}
+    </div>
+</body>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</html>

@@ -1,0 +1,41 @@
+{% extends 'admin_menu.html' %}
+
+{% block title %}Model Update{% endblock %}
+
+{% block content %}
+<div class="container upload-body">
+    <div class="upload">
+        <h6>Model Retraining Instructions</h6>
+        <p>To retrain the model, follow these steps:</p>
+        <ol>
+            <li>Prepare a <b>ZIP file</b> containing only <code>.txt</code> raw data files (no CSV or Excel).</li>
+            <li>Follow this folder structure inside your ZIP:
+                <div><br><img src="{{ url_for('static', filename='upload_instruct.png') }}" alt="Folder structure" width="300" height="180">
+                <p style="font-size: 0.9em; color: #555;">Example folder structure</p>
+                </div>
+            </li>
+            <li>Upload the ZIP using the form below. The system will:
+                <ul>
+                    <li>Validate your ZIP file structure and contents.</li>
+                    <li>Once validated, retraining will begin automatically.</li>
+                    <li>Upon completion, a retraining summary in JSON format will be generated — available in the <b>Downloads</b> section.</li>
+                    <li>You may return to the Admin Home page after submitting the file. No further action is required.</li>
+                </ul>
+            </li>
+        </ol>
+        <p><b>Note:</b> This system uses historical data from the previous year to train and evaluate model performance. Please ensure your uploaded files align with the required data format and timeline.</p>
+        <p>For any issues, contact the system administrator.</p> 
+        <form action="{{ url_for('retrain.retrain_data') }}" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="file" name="file" accept=".zip" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div> 
+</div>
+{% if retrain_message %}
+<script>
+    alert("{{ retrain_message }}");
+</script>
+{% endif %}
+{% endblock %}
+<script src="{{ url_for('static', filename='script.js') }}"></script>
