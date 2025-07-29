@@ -1,0 +1,17 @@
+**/extra
+**/__pycache__
+**/flows
+**/required_tables.json
+
+**/*.pyc
+**/*.csv
+**/*.zip
+**/*.pkl
+**/*.jpg
+
+**/config.yaml
+**/.sesskey
+
+**/config.ini
+**/.env
+**/.txt

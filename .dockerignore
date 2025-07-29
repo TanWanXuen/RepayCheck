@@ -1,0 +1,25 @@
+# Python cache
+__pycache__/
+.pytest_cache__/
+*.pyc
+
+# Environment
+.env
+.venv/
+env/
+*.egg-info/
+
+# Data/output/logs
+*.xlsx
+checkpoints/
+
+# OS or editor files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.bak
+
+# Git
+.git
+.gitignore
