@@ -11,6 +11,7 @@ A fairness-aware machine learning web application to predict loan repayment elig
 - Credit score estimator
 - Secure admin login system with functions like model retraining, model prediction, downloadable prediction and retrain results
 - Secure admin debug panel
+- Custom logging system to support system monitoring and debugging
 
 ---
 
