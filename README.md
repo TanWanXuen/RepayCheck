@@ -107,11 +107,12 @@ to access the Flask container shell
 - You may also use crtl+c to exit the app in the terminal if this is the first time setting up the app. 
 ### 8.	To restart the App after setup, run 
 ```bash
-    docker-compose restart
+    docker compose restart
 ```
 
 **Notes:**
 - Docker must be running when starting the app.
 - The admin account only needs to be created once unless the database is reset.
 - If it shows the error 'Cannot found file start.sh', you may recreate the file with the same content. 
+
 
