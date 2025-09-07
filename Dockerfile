@@ -4,7 +4,8 @@ WORKDIR /app
 
 # Install dependencies + set Malaysia timezone
 RUN apt-get update && \
-    apt-get install -y libgomp1 default-mysql-client tzdata && \
+    apt-get install -y libgomp1  mariadb-client tzdata ca-certificates && \
+    update-ca-certificates && \
     ln -snf /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime && \
     echo "Asia/Kuala_Lumpur" > /etc/timezone && \
     rm -rf /var/lib/apt/lists/*
